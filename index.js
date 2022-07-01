@@ -41,8 +41,11 @@ async function run() {
 
         // Use POSt to get data by key
         app.post('/products/byKeys', async(req, res) => {
-            console.log(req.body);
-            res.send('hitting post');
+            const keys = req.body;
+            const query = {key: {$in: keys}};
+            const products = await productCollection.find(query).toArray();
+            // console.log(products.count());
+            res.json(products);
         })
     }
     finally{
