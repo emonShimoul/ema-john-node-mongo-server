@@ -37,6 +37,12 @@ async function run() {
                 count,
                 products
             });
+        });
+
+        // Use POSt to get data by key
+        app.post('/products/byKeys', async(req, res) => {
+            console.log(req.body);
+            res.send('hitting post');
         })
     }
     finally{
